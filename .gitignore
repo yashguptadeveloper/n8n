@@ -82,3 +82,5 @@ jspm_packages/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+rds-combined-ca-bundle.pem
