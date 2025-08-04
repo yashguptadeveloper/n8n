@@ -84,3 +84,5 @@ ehthumbs.db
 Thumbs.db
 
 rds-combined-ca-bundle.pem
+credentials.json
+tokens.json
