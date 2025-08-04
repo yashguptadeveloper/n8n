@@ -11,6 +11,7 @@ services:
       - ./rds-combined-ca-bundle.pem:/home/node/rds-combined-ca-bundle.pem:ro
       - ./credentials.json:/home/node/credentials.json:ro
       - ./tokens.json:/home/node/.config/google-calendar-mcp/tokens.json
+      - /usr/local/bin/uvx:/usr/local/bin/uvx
     networks:
       - n8n-net
 
