@@ -1,23 +1,30 @@
-FROM ubuntu:24.04
+# Base image: same as your compose setup
+FROM n8nio/n8n:latest
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-  curl git build-essential wget gnupg ca-certificates
+# Switch to root user to install dependencies
+USER root
 
-# Install Node.js 22
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
-    apt-get install -y nodejs && \
-    node -v && npm -v
-
-# Install n8n globally
-RUN npm install -g n8n
+# Install system tools and build deps on Alpine
+RUN apk update && apk add --no-cache \
+    git \
+    curl \
+    nodejs \
+    npm \
+    python3 \
+    make \
+    g++ \
+    bash
 
 # Install uvx from GitHub
 RUN git clone https://github.com/Hawstein/uvx.git /uvx && \
-    cd /uvx && npm install && npm link
+    cd /uvx && npm install && npm link && \
+    rm -rf /uvx
 
-# Expose n8n default port
+# Switch back to the default n8n user
+USER node
+
+# Default port for n8n
 EXPOSE 5678
 
-# Start n8n by default
+# Start n8n
 CMD ["n8n"]
