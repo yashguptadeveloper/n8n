@@ -10,7 +10,7 @@ services:
       - n8n_data:/home/node/.n8n
       - ./rds-combined-ca-bundle.pem:/home/node/rds-combined-ca-bundle.pem:ro
       - ./credentials.json:/home/node/credentials.json:ro
-      - ./tokens.json:/home/node/.config/google-calendar-mcp/tokens.json:ro
+      - ./tokens.json:/home/node/.config/google-calendar-mcp/tokens.json
     networks:
       - n8n-net
 
